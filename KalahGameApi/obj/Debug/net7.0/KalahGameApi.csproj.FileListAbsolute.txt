@@ -87,3 +87,16 @@ C:\Users\Administrator\Desktop\2024 S2\MSA\PhaseTwo\KalahGameApi\obj\Debug\net7.
 C:\Users\Administrator\Desktop\2024 S2\MSA\PhaseTwo\KalahGameApi\obj\Debug\net7.0\KalahGameApi.genruntimeconfig.cache
 C:\Users\Administrator\Desktop\2024 S2\MSA\PhaseTwo\KalahGameApi\obj\Debug\net7.0\ref\KalahGameApi.dll
 C:\Users\Administrator\Desktop\2024 S2\MSA\PhaseTwo\KalahGameApi\obj\Debug\net7.0\KalahGameApi.csproj.CopyComplete
+C:\Users\Administrator\Desktop\2024 S2\MSA\PhaseTwo\KalahGameApi\bin\Debug\net7.0\Microsoft.AspNetCore.Connections.Abstractions.dll
+C:\Users\Administrator\Desktop\2024 S2\MSA\PhaseTwo\KalahGameApi\bin\Debug\net7.0\Microsoft.AspNetCore.SignalR.Common.dll
+C:\Users\Administrator\Desktop\2024 S2\MSA\PhaseTwo\KalahGameApi\bin\Debug\net7.0\Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson.dll
+C:\Users\Administrator\Desktop\2024 S2\MSA\PhaseTwo\KalahGameApi\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Administrator\Desktop\2024 S2\MSA\PhaseTwo\KalahGameApi\bin\Debug\net7.0\Microsoft.Extensions.Features.dll
+C:\Users\Administrator\Desktop\2024 S2\MSA\PhaseTwo\KalahGameApi\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\Users\Administrator\Desktop\2024 S2\MSA\PhaseTwo\KalahGameApi\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Administrator\Desktop\2024 S2\MSA\PhaseTwo\KalahGameApi\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\Administrator\Desktop\2024 S2\MSA\PhaseTwo\KalahGameApi\bin\Debug\net7.0\System.IO.Pipelines.dll
+C:\Users\Administrator\Desktop\2024 S2\MSA\PhaseTwo\KalahGameApi\bin\Debug\net7.0\System.Net.WebSockets.WebSocketProtocol.dll
+C:\Users\Administrator\Desktop\2024 S2\MSA\PhaseTwo\KalahGameApi\bin\Debug\net7.0\System.Text.Encodings.Web.dll
+C:\Users\Administrator\Desktop\2024 S2\MSA\PhaseTwo\KalahGameApi\bin\Debug\net7.0\System.Text.Json.dll
+C:\Users\Administrator\Desktop\2024 S2\MSA\PhaseTwo\KalahGameApi\bin\Debug\net7.0\runtimes\browser\lib\net7.0\System.Text.Encodings.Web.dll

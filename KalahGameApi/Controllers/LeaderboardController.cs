@@ -51,8 +51,27 @@ namespace KalahGameApi.Controllers
                 return BadRequest("LeaderboardEntry is required.");
             }
 
-            await _context.LeaderboardEntries.InsertOneAsync(leaderboardEntry);
-            return CreatedAtAction(nameof(GetLeaderboardEntry), new { playerName = leaderboardEntry.PlayerName }, leaderboardEntry);
+            var entries = await _context.LeaderboardEntries.Find(entry => true).ToListAsync();
+
+            if (entries.Count < 5)
+            {
+                await _context.LeaderboardEntries.InsertOneAsync(leaderboardEntry);
+                return CreatedAtAction(nameof(GetLeaderboardEntry), new { playerName = leaderboardEntry.PlayerName }, leaderboardEntry);
+            }
+            else
+            {
+                var lowestScoreEntry = entries.OrderBy(e => e.Score).FirstOrDefault();
+                if (lowestScoreEntry != null && leaderboardEntry.Score > lowestScoreEntry.Score)
+                {
+                    await _context.LeaderboardEntries.DeleteOneAsync(e => e.PlayerName == lowestScoreEntry.PlayerName);
+                    await _context.LeaderboardEntries.InsertOneAsync(leaderboardEntry);
+                    return CreatedAtAction(nameof(GetLeaderboardEntry), new { playerName = leaderboardEntry.PlayerName }, leaderboardEntry);
+                }
+                else
+                {
+                    return Conflict("New player's score is not high enough to enter the leaderboard.");
+                }
+            }
         }
 
         // PUT: api/Leaderboard/playerName

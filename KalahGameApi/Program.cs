@@ -3,6 +3,7 @@ using KalahGameApi.Data;
 using KalahGameApi.Models;
 using MongoDB.Driver;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,6 @@ builder.Services.Configure<Settings>(
 builder.Services.AddSingleton<LeaderboardContext>();
 builder.Services.AddControllers();
 
-// Configure CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllOrigins",
@@ -24,6 +24,8 @@ builder.Services.AddCors(options =>
                    .AllowAnyMethod();
         });
 });
+
+builder.Services.AddSignalR().AddNewtonsoftJsonProtocol(); // Add SignalR
 
 // Configure Swagger
 builder.Services.AddEndpointsApiExplorer();
@@ -67,10 +69,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseCors("AllowAllOrigins"); // Add this line to use CORS
+app.UseCors("AllowAllOrigins");
 
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<MatchHub>("/match"); // Map the SignalR hub
 
 app.Run();
