@@ -28,4 +28,6 @@ public class LeaderboardContext
             return _database.GetCollection<LeaderboardEntry>("LeaderboardEntries");
         }
     }
+
+    public IMongoCollection<Announcement> Announcements => _database.GetCollection<Announcement>("Announcements");
 }

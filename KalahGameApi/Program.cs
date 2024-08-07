@@ -12,6 +12,7 @@ builder.Services.Configure<Settings>(
     builder.Configuration.GetSection(nameof(Settings)));
 
 builder.Services.AddSingleton<LeaderboardContext>();
+builder.Services.AddSingleton<AnnouncementContext>();
 builder.Services.AddControllers();
 
 builder.Services.AddCors(options =>
