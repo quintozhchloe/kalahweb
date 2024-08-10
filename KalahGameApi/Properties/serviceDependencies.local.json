@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "cosmosdb1": {
+      "ignored": "true",
+      "type": "cosmosdb"
+    }
+  }
+}

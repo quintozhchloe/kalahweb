@@ -33,7 +33,8 @@ namespace KalahGameApi.Controllers
         {
             // 获取当前最大ID
             var allAnnouncements = await _announcements.Find(a => true).ToListAsync();
-            var maxId = allAnnouncements.Max(a => int.TryParse(a.Id, out int id) ? id : 0);
+            var maxId = allAnnouncements.DefaultIfEmpty().Max(a => int.TryParse(a?.Id, out int id) ? id : 0);
+          
 
             // 生成顺序ID
             announcement.Id = (maxId + 1).ToString();
@@ -47,10 +48,16 @@ namespace KalahGameApi.Controllers
             return CreatedAtAction(nameof(GetAnnouncements), new { id = announcement.Id }, announcement);
         }
 
-        // PUT: api/Announcements/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAnnouncement(string id, [FromBody] Announcement announcement)
         {
+            // Ensure that the Id in the announcement matches the id in the route
+            if (announcement.Id != id)
+            {
+                return BadRequest("Announcement ID mismatch");
+            }
+
+            // Only allow updates to other fields, not the Id
             var updateResult = await _announcements.ReplaceOneAsync(a => a.Id == id, announcement);
 
             if (updateResult.MatchedCount == 0)

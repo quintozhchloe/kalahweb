@@ -1,9 +1,5 @@
-using Microsoft.Extensions.Options;
 using KalahGameApi.Data;
-using KalahGameApi.Models;
-using MongoDB.Driver;
 using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,10 +22,11 @@ builder.Services.AddCors(options =>
         });
 });
 
-builder.Services.AddSignalR().AddNewtonsoftJsonProtocol(); // Add SignalR
+// Configure logging
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 
-// Configure Swagger
-builder.Services.AddEndpointsApiExplorer();
+// Add Swagger
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
@@ -48,22 +45,17 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "KalahGameApi v1");
-        c.RoutePrefix = string.Empty; // Sets Swagger UI at app's root
-    });
 }
-else
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "KalahGameApi v1");
+    c.RoutePrefix = string.Empty;
+});
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -75,6 +67,5 @@ app.UseCors("AllowAllOrigins");
 app.UseAuthorization();
 
 app.MapControllers();
-app.MapHub<MatchHub>("/match"); // Map the SignalR hub
 
 app.Run();
