@@ -31,18 +31,16 @@ namespace KalahGameApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Announcement>> PostAnnouncement([FromBody] Announcement announcement)
         {
-            // 获取当前最大ID
+            
             var allAnnouncements = await _announcements.Find(a => true).ToListAsync();
             var maxId = allAnnouncements.DefaultIfEmpty().Max(a => int.TryParse(a?.Id, out int id) ? id : 0);
           
 
-            // 生成顺序ID
+       
             announcement.Id = (maxId + 1).ToString();
-
-            // 设置当前日期
+      
             announcement.Date = DateTime.UtcNow;
 
-            // 插入公告
             await _announcements.InsertOneAsync(announcement);
 
             return CreatedAtAction(nameof(GetAnnouncements), new { id = announcement.Id }, announcement);
